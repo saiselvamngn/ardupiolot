@@ -1,0 +1,80 @@
+Installing ardupiolot on linux  and its necessary simulators please follow the installation procedures., 
+STEP1:
+      build an ardupiolot environment for linux.
+      ******************************************************************************************************
+      
+      Main URL link:
+  https://ardupilot.org/dev/docs/building-setup-linux.html#building-setup-linux
+  
+  I tried the following procedures and found it is easy
+  ------------------------------------------------------------------------------------------------------------
+  
+Get git
+
+Git is a free and open source distributed version control system that is used to manage ArduPilot codebase. Git is available on all major OS platforms, and a variety of tools exist to make it easier to get started.
+Git command line
+Ubuntu
+
+Linux/Ubuntu users can install with apt :
+
+        sudo apt-get update
+        sudo apt-get install git
+        sudo apt-get install gitk git-gui
+
+        https://github.com/ArduPilot/ardupilot.git 
+// for the main ardupilot repo
+
+Cloning with the command line
+open a terminal and navigate to the directory where you would like the clone to be stored
+
+      git clone https://github.com/ArduPilot/ardupilot.git
+      cd ardupilot
+      git submodule update --init --recursive
+      
+ NOTE:
+ *********************
+ while update all submodules, if any firewalls in our network, installation will be shown as failure., 
+ so try to connect with our mobile/own wifi router, then proceed with the above last command. 
+ although, in the main URL link, they have given some alternative way also, for bypassing firewalls issue. 
+ 
+ anyway the above procedure is pretty easy.
+ 
+ 
+      Install some required packages
+      *********************************************88
+      
+      Tools/environment_install/install-prereqs-ubuntu.sh -y
+  Reload the path (log-out and log-in to make permanent):
+
+        . ~/.profile
+
+
+        sudo apt install python-matplotlib python-serial python-wxgtk3.0 python-wxtools python-lxml python-scipy python-opencv ccache gawk python-pip python-pexpect
+        sudo pip install future pymavlink MAVProxy
+        
+        gedit ~/.bashrc
+        add the following statments in the bash rc file. preferably at the end of the existing code. 
+        ------------------------------------------------------------------------------------------------------
+        export PATH=$PATH:$HOME/ardupilot/Tools/autotest
+        export PATH=/usr/lib/ccache:$PATH
+        now save it. 
+        
+        now run using below command
+        -----------------------------------------
+        . ~/.bashrc
+        
+        after the above steps, try to open the ardu piolot/Mavproxy command line will open.
+        -------------------------------------------------------------------------------------------------
+       cd ~/ardupilot/ArduCopter
+       sim_vehicle.py -w
+       
+       SITL core is activated using above link sim_vehcicle.py
+       ***********************************************************************************8
+         
+         now ardu piolot installation over. 
+         
+         then go to SITL  doc, try to install the commands each by each. aslo try to install Gazebo and ROS, Mission planner etc. there are many necessary simulators are there. see the doc and proceed .
+         
+         https://ardupilot.org/dev/docs/using-sitl-for-ardupilot-testing.html
+         
+         try the above link and work on it. 
